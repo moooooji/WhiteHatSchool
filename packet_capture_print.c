@@ -80,7 +80,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
             tcp = (tcpheader*)(packet + sizeof(ethheader) + iph_length);
         }
 
-        int tcph_length = tcp->tcp_offset * 4;
+        int tcph_length = (tcp->tcp_offset >> 4) * 4;
         
         printf("********** tcp header information **********\n");
         printf("src port : %d\n", ntohs(tcp->tcp_sport));
